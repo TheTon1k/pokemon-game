@@ -2,20 +2,17 @@ import Menu from "./Menu";
 import Navbar from "./Navbar";
 import {useState} from "react";
 
-const MenuNavbar = () => {
-    let [isActive, setActive] = useState(false)
-    let [isMenuClicked, setMenuClicked] = useState(false)
-    console.log(isMenuClicked)
-
+const MenuNavbar = ({bgActive}) => {
+    let [isOpen, setOpen] = useState(null)
 
     let handleClick = () => {
-        setActive(!isActive)
-         !isMenuClicked && setMenuClicked(true)
+        setOpen(prevState => !prevState)
     }
+
     return (
         <div>
-            {isMenuClicked && <Menu isActive={isActive}/>} {/*чтобы при открытии страницы не прогружалось меню*/}
-            <Navbar isActive={isActive} setActiveInactive={handleClick}/>
+            <Menu isOpen={isOpen} setActiveInactive={handleClick} />
+            <Navbar isOpen={isOpen} bgActive ={bgActive} setActiveInactive={handleClick}/>
         </div>
     )
 }

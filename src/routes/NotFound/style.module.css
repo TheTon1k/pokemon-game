@@ -1,0 +1,9 @@
+.notFound{
+    width: 100vw;
+    height: 100vh;
+    background: url(../../imgs/notFound.svg) right no-repeat;
+    background-size:contain;
+    text-align: center;
+    font-size: 35px;
+    padding: 30vh
+}
