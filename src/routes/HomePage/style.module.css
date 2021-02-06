@@ -4,3 +4,6 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.centerButton {
+    text-align: center;
+}
