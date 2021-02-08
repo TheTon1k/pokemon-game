@@ -1,9 +1,10 @@
-import {Route, Switch, useRouteMatch, Redirect} from "react-router-dom"
+import {Route, Switch, useRouteMatch, Redirect} from "react-router-dom";
 
 import HomePage from "./routes/HomePage";
 import GamePage from "./routes/GamePage";
 import MenuNavbar from "./components/MenuNavbar";
 import Footer from "./components/Footer";
+
 
 import cn from "classnames"
 import s from "./style.module.css"

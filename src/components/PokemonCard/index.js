@@ -3,15 +3,15 @@ import cn from 'classnames'
 import s from './PokemonCard.module.css'
 
 
-const PokemonCard = ({values, id, name, img, type, handleSetActive, isActive}) => {
-    let handleClick = (id) => {
-        handleSetActive(id)
+const PokemonCard = ({unicKey,values, id, name, img, type, handleSetActive, isActive}) => {
+    let handleClick = (unicKey,id) => {
+        handleSetActive(unicKey,id)
     }
-
+console.log()
     return (
         <>
             <div className={s.root}>
-                <div className={cn(s.pokemonCard, {[s.active]: isActive})} onClick={()=>handleClick(id)}>
+                <div className={cn(s.pokemonCard, {[s.active]: isActive})} onClick={()=>handleClick(unicKey,id)}>
                     <div className={s.cardFront}>
                         <div className={cn(s.wrap, s.front)}>
                             <div className={cn(s.pokemon, s[type])}>
