@@ -1,7 +1,6 @@
 import {Route, Switch, useRouteMatch, Redirect} from "react-router-dom";
 
 import HomePage from "./routes/HomePage";
-import GamePage from "./routes/GamePage";
 import MenuNavbar from "./components/MenuNavbar";
 import Footer from "./components/Footer";
 
@@ -9,19 +8,26 @@ import Footer from "./components/Footer";
 import cn from "classnames"
 import s from "./style.module.css"
 import NotFound from "./routes/NotFound";
+import GamePage from "./routes/Game";
+import {FirebaseContext} from "./service/FirebaseContext";
+import Firebase from "./service/firebase";
 
 
 const App = () => {
     const isHomeUrl = useRouteMatch('/')
 
+    const isGameUrl = useRouteMatch('/game/board')
+
+
     return (
+        <FirebaseContext.Provider value ={new Firebase()}>
         <Switch>
             <Route path='/404' component={NotFound}/>
 
             <Route>
                 <>
-                    <MenuNavbar bgActive={!isHomeUrl.isExact}/>
-                    <div className={cn(s.wrap, {[s.isHome]: isHomeUrl.isExact})}>
+                    <MenuNavbar bgActive={!isHomeUrl.isExact &&!isGameUrl}/>
+                    <div className={cn(s.wrap, {[s.isHome]: isHomeUrl.isExact||isGameUrl})}>
                         <Switch>
                             <Route exact path='/' render={() => (
                                 <HomePage />
@@ -41,6 +47,7 @@ const App = () => {
                 </>
             </Route>
         </Switch>
+        </FirebaseContext.Provider>
     )
 }
 export default App;
