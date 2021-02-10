@@ -1,0 +1,16 @@
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 0 auto;
+}
+.root{
+    height: 370px;
+    width: 270px;
+    margin: 15px;
+}
+.centerButton {
+    text-align: center;
+}
