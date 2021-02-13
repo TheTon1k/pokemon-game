@@ -7,15 +7,46 @@ import {useState} from "react";
 
 const GamePage = () => {
     const match = useRouteMatch();
-    const [selectedPokemons, setSelectedPokemons] = useState([])
-    const handlerChangeSelectedPokemons = (val) => {
-        setSelectedPokemons(val)
+    const [selectedPokemons, setSelectedPokemons] = useState({})
+    const [player2Poke, setPlayer2Poke] = useState([])
+    const [winner, setWinner] = useState(null)
+
+    const handlerChangeSelectedPokemons = (key, pokemon) => {
+        setSelectedPokemons(prevState => {
+            if (prevState[key]) {
+                const copyState = {...prevState}
+                delete copyState[key]
+                return copyState
+            }
+            return {
+                ...prevState,
+                [key]: pokemon
+            }
+        })
     }
+    const handleResetPokemonProvider =()=>{
+        setSelectedPokemons({})
+        setWinner(null)
+        setPlayer2Poke([])
+    }
+
+    const handleSetWinner = (winnner) => {
+        setWinner(winnner)
+    }
+
+    const handlerAddPlayer2Poke = (pokemon) => setPlayer2Poke(pokemon)
+
 
     return (
         <PokemonContext.Provider value={{
             poke: selectedPokemons,
-            addSelectedPokemon: handlerChangeSelectedPokemons
+            addSelectedPokemon: handlerChangeSelectedPokemons,
+            enemyPoke: player2Poke,
+            handlerAddPlayer2Poke,
+            winner: winner,
+            handleSetWinner,
+            handleResetPokemonProvider
+
         }}>
             <Switch>
                 <Route path={`${match.path}/`} exact><StartPage setPokemon={1}/> </Route>

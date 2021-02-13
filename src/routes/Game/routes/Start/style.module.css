@@ -1,16 +1,20 @@
 .flex {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
     align-items: center;
-    flex-wrap: wrap;
-    width: 70%;
+    width: 70vw;
     margin: 0 auto;
+
+
 }
-.root{
-    height: 370px;
-    width: 270px;
-    margin: 15px;
-}
+
 .centerButton {
     text-align: center;
+    padding: 2rem;
+}
+.flex .card{
+    width: 100%;
+    max-width: 18vw;
+    height: 380px;
 }
