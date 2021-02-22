@@ -13,20 +13,15 @@
     --flying: #F5F5F5;
     --fighting: #E6E0D4;
     --normal: #F5F5F;
-    max-width: 270px;
-    max-height: 370px;
     width: 100%;
     height: 100%;
+    max-height: 380px;
     position: relative;
     transform-style: preserve-3d;
     transition: .6s .1s;
     transform: rotateY(180deg);
 }
 
-.pokemonCard.className {
-    max-width: 250px;
-    max-height: 235px;
-}
 
 .pokemonCard.active {
     animation: flipFront 1000ms 300ms forwards;
@@ -42,7 +37,8 @@
 }
 
 .pokemonCard.selected {
-    margin-top: -40px;
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 .cardFront,
@@ -64,6 +60,11 @@
 .cardFront {
     transform: rotateY(0deg);
     z-index: 2;
+}
+
+.pokemonCard:active .wrap.front::after,
+.pokemonCard:focus .wrap.front::after{
+    border-color: var(--rock);
 }
 
 .wrap {
@@ -251,4 +252,10 @@
 }
 small{
     font-size: 1.5em;
+}
+.red{
+    background-color: #ff6969;
+}
+.blue{
+    background-color: #6379e5;
 }

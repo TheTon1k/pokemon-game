@@ -12,11 +12,11 @@ const firebaseConfig = {
 };
 
 
-
+firebase.initializeApp(firebaseConfig);
 class Firebase{
     constructor() {
         if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
+
         }else {
             firebase.app(); // if already initialized, use that one
         }
@@ -28,36 +28,17 @@ class Firebase{
             cb(spanshot.val())
         })
     }
+    offPokemonsSocket =()=>{
+        this.database.ref('pokemons').off()
+
+    }
 
     postPokemon =(key,pokemon)=>{
-        this.database.ref('pokemins/'+key).set(pokemon)
+        this.database.ref('pokemons/'+key).set(pokemon)
     }
-    addPokemon =(cb)=>{
-        let newPoke = {
-            "abilities" : [ "keen-eye", "tangled-feet", "big-pecks" ],
-            "base_experience" : 122,
-            "height" : 11,
-            "id" : Math.floor(Math.random()*5000),
-            "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
-            "name" : "newPoke",
-            "stats" : {
-                "attack" : 60,
-                "defense" : 55,
-                "hp" : 63,
-                "special-attack" : 50,
-                "special-defense" : 50,
-                "speed" : 71
-            },
-            "type" : "flying",
-            "values" : {
-                "bottom" : 7,
-                "left" : 5,
-                "right" : 2,
-                "top" : "A"
-            }
-        }
+    addPokemon =(pokemonData)=>{
         const newPostKey = this.database.ref().child('pokemons').push().key;
-        this.database.ref('pokemons/'+newPostKey).set(newPoke)
+        this.database.ref('pokemons/'+newPostKey).set(pokemonData)
     }
 }
 export default Firebase
